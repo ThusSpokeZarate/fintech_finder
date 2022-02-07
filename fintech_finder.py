@@ -28,7 +28,9 @@
 import streamlit as st
 from dataclasses import dataclass
 from typing import Any, List
-from web3 import Web3
+from web3 import Web3, EthereumTesterProvider
+
+#provider = EthereumTesterProvider()
 w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545'))
 ################################################################################
 # Step 1:
@@ -157,6 +159,10 @@ st.sidebar.write(get_balance(w3, account.address))
 # Create a select box to chose a FinTech Hire candidate
 person = st.sidebar.selectbox('Select a Person', people)
 
+
+# Person
+#st.sidebar.write(person)
+
 # Create a input field to record the number of hours the candidate worked
 hours = st.sidebar.number_input("Number of Hours")
 
@@ -266,6 +272,8 @@ st.sidebar.write(wage)
 # web interface.
 
 
+#st.sidebar.write(account)
+
 if st.sidebar.button("Send Transaction"):
 
     # @TODO
@@ -273,7 +281,7 @@ if st.sidebar.button("Send Transaction"):
     # Your `account`, the `candidate_address`, and the `wage` as parameters
     # Save the returned transaction hash as a variable named `transaction_hash`
     # YOUR CODE HERE
-    transaction_hash = send_transaction(w3, account, candidate, wage)
+    transaction_hash = send_transaction(w3, account, candidate_address, wage)
 
     # Markdown for the transaction hash
     st.sidebar.markdown("#### Validated Transaction Hash")
